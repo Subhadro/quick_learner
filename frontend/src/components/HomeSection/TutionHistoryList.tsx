@@ -3,17 +3,18 @@ import ToggleButton from '../../reusable-parts/ToggleButton';
 import TitleComponent from '../../reusable-parts/TitleComponent';
 import TuitionHistoryCard from '../../reusable-parts/TutionHistory';
 import { tuitionHistoryData } from '../../Constants/tution-history';
+import { TuitionHistoryIO } from '../../typeIO/priliminaryIO';
 
-const TuitionHistoryList = () => {
-	const [showAll, setShowAll] = useState(false);
-	const [tuitionHistory] = useState(tuitionHistoryData);
+const TuitionHistoryList: React.FC = () => {
+	const [showAll, setShowAll] = useState<boolean>(false);
+	const [tuitionHistory] = useState<TuitionHistoryIO[]>(tuitionHistoryData);
 
 	const visibleHistory = showAll ? tuitionHistory : tuitionHistory.slice(0, 2);
 
 	// Sample payment statuses - you can modify this logic based on your data
-	const getPaymentStatus = (booking) => {
+	const getPaymentStatus = (booking: TuitionHistoryIO): string => {
 		const statuses = ['paid', 'pending', 'overdue', 'cancelled'];
-		return statuses[booking.cardId % statuses.length];
+		return statuses[booking.cardId.length % statuses.length];
 	};
 
 	return (
@@ -26,7 +27,7 @@ const TuitionHistoryList = () => {
 			/>
 
 			<div className="grid gap-6">
-				{visibleHistory.map((booking) => (
+				{visibleHistory.map((booking:TuitionHistoryIO) => (
 					<TuitionHistoryCard
 						key={booking.cardId}
 						booking={booking}

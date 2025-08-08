@@ -1,7 +1,17 @@
-// BookingCard.jsx
+// BookingCard.tsx
 import React from 'react';
+import { BookingIO } from '../typeIO/priliminaryIO';
 
-const BookingCard = ({
+interface BookingCardProps {
+	booking: BookingIO;
+	isEditing: boolean;
+	onChange: (id: string, key: keyof BookingIO, value: string | string[] | boolean) => void;
+	onEdit: () => void;
+	onCancel: () => void;
+	onSave: () => void;
+}
+
+const BookingCard: React.FC<BookingCardProps> = ({
 	booking,
 	isEditing,
 	onChange,
@@ -67,7 +77,7 @@ const BookingCard = ({
 						/>
 					) : (
 						<ol className="list-decimal list-inside mt-1">
-							{booking.requirements.map((req, idx) => (
+							{booking.requirements.map((req: string, idx: number) => (
 								<li key={idx}>{req}</li>
 							))}
 						</ol>

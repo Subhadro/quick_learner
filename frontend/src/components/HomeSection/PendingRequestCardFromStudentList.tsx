@@ -3,10 +3,11 @@ import ToggleButton from "../../reusable-parts/ToggleButton";
 import TitleComponent from "../../reusable-parts/TitleComponent";
 import { teachingHistoryData } from "../../Constants/tution-history";
 import PendingRequestCard from "../../reusable-parts/PendingRequestCardFromStudent";
+import { PendingRequestIO } from "../../typeIO/priliminaryIO";
 
-const PendingRequestsList = () => {
-  const [showAll, setShowAll] = useState(false);
-  const [pendingRequests] = useState(teachingHistoryData);
+const PendingRequestsList: React.FC = () => {
+  const [showAll, setShowAll] = useState<boolean>(false);
+  const [pendingRequests] = useState<PendingRequestIO[]>(teachingHistoryData);
 
   const visibleRequests = showAll ? pendingRequests : pendingRequests.slice(0, 2);
 

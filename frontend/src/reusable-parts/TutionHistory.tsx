@@ -1,9 +1,10 @@
 // TuitionHistoryCard.jsx
 import React from 'react';
+import { TuitionHistoryIO } from '../typeIO/priliminaryIO';
 
-const TuitionHistoryCard = ({ booking }) => {
+const TuitionHistoryCard = ({ booking }:{booking:TuitionHistoryIO}) => {
 	const getPaymentStatusBadge = () => {
-		const statusClasses = {
+		const statusClasses: Record<string, string> = {
 			paid: 'badge-success',
 			pending: 'badge-warning', 
 			overdue: 'badge-error',
@@ -51,7 +52,7 @@ const TuitionHistoryCard = ({ booking }) => {
 				<div className="md:col-span-2">
 					<label className="font-semibold">Requirements</label>
 					<ol className="list-decimal list-inside mt-1">
-						{booking.requirements.map((req, idx) => (
+						{booking.requirements.map((req: string, idx: number) => (
 							<li key={idx}>{req}</li>
 						))}
 					</ol>

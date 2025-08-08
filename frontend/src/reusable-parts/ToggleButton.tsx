@@ -1,11 +1,19 @@
 import React from 'react';
 
-const ToggleButton = ({
-  onClick,
-  isExpanded,
-  expandedText = 'Show Less',
-  collapsedText = 'Show More',
-  className = '',
+type ToggleButtonProps = {
+	onClick: () => void;
+	isExpanded: boolean;
+	expandedText?: string;
+	collapsedText?: string;
+	className?: string;
+}
+
+const ToggleButton: React.FC<ToggleButtonProps> = ({
+	onClick,
+	isExpanded,
+	expandedText = 'Show Less',
+	collapsedText = 'Show More',
+	className = '',
 }) => {
   return (
     <div className={`mt-10 flex justify-center ${className}`}>

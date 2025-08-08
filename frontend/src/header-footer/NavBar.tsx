@@ -1,8 +1,9 @@
-import { Link, useNavigate } from "react-router-dom"
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar: React.FC = () => {
 	const navigate = useNavigate();
-	const scrollToSection = (id) => {
+	const scrollToSection = (id: string): void => {
 		const section = document.getElementById(id);
 		if (section) {
 			section.scrollIntoView({ behavior: 'smooth' });
@@ -22,13 +23,13 @@ const NavBar = () => {
 					<ul
 						tabIndex={0}
 						className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-						<li><Link>Book A Stot For Tution</Link></li>
+						<li><Link to={'/tution-slot'}>Book A Stot For Tution</Link></li>
 						<li><Link to={'/card'}>See All Available Posts</Link></li>
 						<li>
-							<Link>Parent</Link>
+							<span>Parent</span>
 							<ul className="p-2">
-								<li><Link>Submenu 1</Link></li>
-								<li><Link>Submenu 2</Link></li>
+								<li><Link to={'/submenu1'}>Submenu 1</Link></li>
+								<li><Link to={'/submenu2'}>Submenu 2</Link></li>
 							</ul>
 						</li>
 					</ul>

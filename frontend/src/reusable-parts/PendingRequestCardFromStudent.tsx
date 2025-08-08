@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { Phone, CalendarDays, AlarmClock } from "lucide-react";
+import { PendingRequestIO } from '../typeIO/priliminaryIO';
 
 // Helper to convert number to Roman numerals
-const toRoman = (num) => {
-	const romanMap = [
+const toRoman = (num: number): string => {
+	const romanMap: [string, number][] = [
 		["M", 1000], ["CM", 900], ["D", 500], ["CD", 400],
 		["C", 100], ["XC", 90], ["L", 50], ["XL", 40],
 		["X", 10], ["IX", 9], ["V", 5], ["IV", 4], ["I", 1]
 	];
-	return romanMap.reduce((acc, [roman, val]) => {
+	return romanMap.reduce((acc: string, [roman, val]: [string, number]) => {
 		while (num >= val) {
 			acc += roman;
 			num -= val;
@@ -17,16 +18,20 @@ const toRoman = (num) => {
 	}, "");
 };
 
-const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+const capitalize = (s: string): string => s.charAt(0).toUpperCase() + s.slice(1);
 
-const PendingRequestCard = ({ request }) => {
+type PendingRequestCardProps = {
+	request: PendingRequestIO;
+}
+
+const PendingRequestCard: React.FC<PendingRequestCardProps> = ({ request }) => {
 	const statusList = [
 		{ label: "Active", value: "active" },
 		{ label: "Pending", value: "pending" },
 		{ label: "Finished", value: "finished" },
 	];
 
-	const [selectedStatus, setSelectedStatus] = useState(request.status);
+	const [selectedStatus, setSelectedStatus] = useState<string>(request.status);
 
 	return (
 		<div className="rounded-lg border border-base-300 p-4 bg-base-100 shadow-md">
@@ -49,7 +54,7 @@ const PendingRequestCard = ({ request }) => {
 			<div className="mb-3">
 				<p className="text-sm font-semibold">Requirements:</p>
 				<ul className="list-none ml-4 mt-1 text-sm text-base-content space-y-1">
-					{request.requirements.map((req, index) => (
+					{request.requirements.map((req: string, index: number) => (
 						<li key={index}>
 							<span className="font-semibold">{toRoman(index + 1)}.</span> {req}
 						</li>
@@ -81,9 +86,9 @@ const PendingRequestCard = ({ request }) => {
 					<select
 						className="select select-bordered select-sm w-auto"
 						value={selectedStatus}
-						onChange={(e) => setSelectedStatus(e.target.value)}
+						onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedStatus(e.target.value)}
 					>
-						{statusList.map((status) => (
+						{statusList.map((status: {label: string, value: string}) => (
 							<option key={status.value} value={status.value}>
 								{capitalize(status.value)}
 							</option>

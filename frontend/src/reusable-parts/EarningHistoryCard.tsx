@@ -1,11 +1,17 @@
-// EarningHistoryCard.jsx
+// EarningHistoryCard.tsx
 import React, { useState } from 'react';
+import { EarningHistoryIO } from '../typeIO/priliminaryIO';
 
-const EarningHistoryCard = ({ earning, onRatingSubmit }) => {
-	const [rating, setRating] = useState(earning.studentRating || 0);
-	const [hasRated, setHasRated] = useState(earning.hasRated || false);
+interface EarningHistoryCardProps {
+	earning: EarningHistoryIO;
+	onRatingSubmit: (cardId: string, rating: number) => void;
+}
 
-	const handleRatingClick = (value) => {
+const EarningHistoryCard: React.FC<EarningHistoryCardProps> = ({ earning, onRatingSubmit }) => {
+	const [rating, setRating] = useState<number>(earning.studentRating || 0);
+	const [hasRated, setHasRated] = useState<boolean>(earning.hasRated || false);
+
+	const handleRatingClick = (value: number): void => {
 		if (!hasRated) {
 			setRating(value);
 			setHasRated(true);
@@ -13,8 +19,8 @@ const EarningHistoryCard = ({ earning, onRatingSubmit }) => {
 		}
 	};
 
-	const renderStars = () => {
-		return [...Array(5)].map((_, index) => (
+	const renderStars = (): React.ReactElement[] => {
+		return [...Array(5)].map((_, index: number) => (
 			<button
 				key={index}
 				className={`text-2xl ${
@@ -85,7 +91,7 @@ const EarningHistoryCard = ({ earning, onRatingSubmit }) => {
 				<div className="md:col-span-2">
 					<label className="font-semibold">Topics Covered</label>
 					<ol className="list-decimal list-inside mt-1">
-						{earning.topicsCovered.map((topic, idx) => (
+						{earning.topicsCovered.map((topic: string, idx: number) => (
 							<li key={idx}>{topic}</li>
 						))}
 					</ol>

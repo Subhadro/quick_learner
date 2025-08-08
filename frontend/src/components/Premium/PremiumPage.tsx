@@ -1,8 +1,10 @@
 import React from "react";
 import { CheckCircle } from "lucide-react";
+import { PlanIO } from "../../typeIO/priliminaryIO";
 
-const PremiumPlans = () => {
-  const plans = [
+
+const PremiumPlans: React.FC = () => {
+  const plans: PlanIO[] = [
     {
       title: "Basic Access",
       duration: "Lifetime Free",
@@ -46,7 +48,7 @@ const PremiumPlans = () => {
     <div className="max-w-7xl mx-auto px-4 py-12">
       <h2 className="text-4xl font-bold text-center mb-10">🌟 Unlock Premium Benefits</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {plans.map((plan, idx) => (
+        {plans.map((plan: PlanIO, idx: number) => (
           <div
             key={idx}
             className="rounded-box bg-base-100 shadow-xl border border-base-200 p-6 flex flex-col justify-between"
@@ -58,7 +60,7 @@ const PremiumPlans = () => {
                 {plan.price}
               </p>
               <ul className="space-y-3 mb-6">
-                {plan.features.map((feature, i) => (
+                {plan.features.map((feature: string, i: number) => (
                   <li key={i} className="flex items-center gap-2">
                     <CheckCircle className="text-green-500 h-5 w-5" />
                     <span>{feature}</span>

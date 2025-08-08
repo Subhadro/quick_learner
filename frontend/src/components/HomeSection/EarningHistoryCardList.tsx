@@ -3,14 +3,15 @@ import ToggleButton from '../../reusable-parts/ToggleButton';
 import TitleComponent from '../../reusable-parts/TitleComponent';
 import { earningHistoryData } from '../../Constants/earning-history-constants';
 import EarningHistoryCard from '../../reusable-parts/EarningHistoryCard';
+import { EarningHistoryIO } from '../../typeIO/priliminaryIO';
 
-const EarningHistoryList = () => {
-	const [showAll, setShowAll] = useState(false);
-	const [earningHistory, setEarningHistory] = useState(earningHistoryData);
+const EarningHistoryList: React.FC = () => {
+	const [showAll, setShowAll] = useState<boolean>(false);
+	const [earningHistory, setEarningHistory] = useState<EarningHistoryIO[]>(earningHistoryData);
 
 	const visibleHistory = showAll ? earningHistory : earningHistory.slice(0, 2);
 
-	const handleRatingSubmit = (cardId, rating) => {
+	const handleRatingSubmit = (cardId: string, rating: number): void => {
 		setEarningHistory(prev => 
 			prev.map(earning => 
 				earning.cardId === cardId 

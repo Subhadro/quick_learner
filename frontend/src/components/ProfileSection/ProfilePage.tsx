@@ -1,7 +1,11 @@
 import React from "react";
+import { UserIO } from "../../typeIO/priliminaryIO";
 
+type UserProfileProps = {
+  user: UserIO;
+}
 
-const UserProfile = ({ user }) => {
+const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-base-200 p-6">
       <div className="card w-full max-w-md bg-base-100 shadow-xl">
@@ -30,7 +34,7 @@ const UserProfile = ({ user }) => {
             <div className="flex justify-between items-center mb-2">
               <span className="font-semibold">Rating</span>
               <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, i) => (
+                {[...Array(5)].map((_, i: number) => (
                   <span
                     key={i}
                     className={`text-yellow-400 ${i < (user.star || 1) ? "opacity-100" : "opacity-30"}`}
@@ -45,7 +49,7 @@ const UserProfile = ({ user }) => {
               <div className="mt-4 text-left">
                 <h3 className="font-semibold mb-1">Reviews</h3>
                 <ul className="list-disc list-inside text-sm">
-                  {user.review.slice(0, 3).map((rev, idx) => (
+                  {user.review.slice(0, 3).map((rev, idx: number) => (
                     <li key={idx}>{rev?.message || "Review content"}</li>
                   ))}
                 </ul>

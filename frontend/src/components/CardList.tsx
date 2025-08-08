@@ -1,12 +1,17 @@
-// CardList.jsx
+// CardList.tsx
 import React from "react";
 import { Bookings as defaultBookings } from "../Constants/booking";
 import Card from "../reusable-parts/Card";
+import { CardBookingIO } from "../typeIO/priliminaryIO";
 
-const CardList = ({ bookings = defaultBookings }) => {
+type CardListProps = {
+	bookings?: CardBookingIO[];
+}
+
+const CardList: React.FC<CardListProps> = ({ bookings = defaultBookings }) => {
 	return (
 		<div className="flex w-screen flex-col sha">
-			{bookings.map((booking, index) => (
+			{bookings.map((booking: CardBookingIO, index: number) => (
 				<Card
 					key={index}
 					heading={booking.heading}

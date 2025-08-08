@@ -2,7 +2,6 @@ import React from "react";
 import NavBar from "./header-footer/NavBar";
 import { Routes, Route, Navigate } from "react-router-dom";
 import SignUp from "./authPage/SignUp";
-import LogIn from "./authPage/Login";
 import Footer from "./header-footer/Footer";
 import Card from "./components/CardList";
 import CardDetailsPage from "./components/CardDetailSection";
@@ -11,9 +10,10 @@ import UserProfile from "./components/ProfileSection/ProfilePage";
 import { dummyUser } from "./Constants/dummy-user";
 import BookTuitionSlot from "./components/BookTution/BookTutionSlot";
 import PremiumPlans from "./components/Premium/PremiumPage";
+import LogIn from "./authPage/LogIn";
 
 
-const App = () => {
+const App: React.FC = () => {
 	return (
 		<>
 			<div>

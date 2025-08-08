@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEvent } from "react";
 import { format } from "date-fns";
 import { Trash2 } from "lucide-react";
+import { FormDataIO } from "../../typeIO/priliminaryIO";
 
-const BookTuitionSlot = () => {
-  const [form, setForm] = useState({
+const BookTuitionSlot: React.FC = () => {
+  const [form, setForm] = useState<FormDataIO>({
     cardId: "",
     tutorName: "",
     timingSlab: "",
@@ -13,7 +14,7 @@ const BookTuitionSlot = () => {
     requirements: [""],
   });
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value, type, checked } = e.target;
     setForm((prev) => ({
       ...prev,
@@ -21,29 +22,29 @@ const BookTuitionSlot = () => {
     }));
   };
 
-  const handleRequirementChange = (value, index) => {
+  const handleRequirementChange = (value: string, index: number): void => {
     const newReq = [...form.requirements];
     newReq[index] = value;
     setForm((prev) => ({ ...prev, requirements: newReq }));
   };
 
-  const addRequirement = () => {
+  const addRequirement = (): void => {
     setForm((prev) => ({
       ...prev,
       requirements: [...prev.requirements, ""],
     }));
   };
 
-  const removeRequirement = (index) => {
+  const removeRequirement = (index: number): void => {
     const newReq = form.requirements.filter((_, i) => i !== index);
     setForm((prev) => ({ ...prev, requirements: newReq }));
   };
 
-  const handleDateChange = (date) => {
+  const handleDateChange = (date: Date): void => {
     setForm((prev) => ({ ...prev, lastDate: date }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (): void => {
     const finalData = {
       ...form,
       lastDate: format(form.lastDate, "dd MMMM yyyy"),
@@ -125,29 +126,22 @@ const BookTuitionSlot = () => {
 
       <div className="form-control mt-6">
         <label className="label font-semibold">Requirements</label>
-        {form.requirements.map((req, index) => (
+        {form.requirements.map((req: string, index: number) => (
           <div key={index} className="flex gap-6 mb-2 justify-center items-center">
             <input
               type="text"
               value={req}
-              onChange={(e) => handleRequirementChange(e.target.value, index)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => handleRequirementChange(e.target.value, index)}
               className="input input-bordered w-full"
             />
             {form.requirements.length > 1 && (
               <button
                 type="button"
-                className="btn btn-error btn-sm px-2"
+                className="btn btn-sm btn-error tooltip"
+                data-tip="Remove"
                 onClick={() => removeRequirement(index)}
               >
-                <button
-									type="button"
-									className="btn btn-sm btn-error tooltip"
-									data-tip="Remove"
-									onClick={() => removeRequirement(index)}
-								>
-									<Trash2 className="h-4 w-4 text-white" />
-								</button>
-
+                <Trash2 className="h-4 w-4 text-white" />
               </button>
             )}
           </div>

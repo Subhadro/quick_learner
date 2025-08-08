@@ -1,10 +1,12 @@
-// Card.jsx
+// Card.tsx
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { MessageSquare, Share2, Edit } from "lucide-react";
 import { Link } from "react-router-dom";
+import { CardBookingIO } from "../typeIO/priliminaryIO";
 
-const Card = ({
+
+const Card: React.FC<CardBookingIO> = ({
   heading,
   username,
   details,
@@ -17,7 +19,7 @@ const Card = ({
   status,
   cardId,
 }) => {
-  const [showComments, setShowComments] = useState(false);
+  const [showComments, setShowComments] = useState<boolean>(false);
   const maxLength = 200;
   const isLong = details.length > maxLength;
   const preview = isLong ? details.substring(0, maxLength) + "..." : details;

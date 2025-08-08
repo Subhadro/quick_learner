@@ -19,7 +19,8 @@ const reviewSchema = new mongoose.Schema(
             required: true,
         },
         comment: {
-            type: String,
+            type: mongoose.Schema.Type.ObjectId,
+						ref:"Comment",
             required: true,
         },
     },

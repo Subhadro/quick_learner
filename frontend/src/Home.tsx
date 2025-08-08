@@ -6,8 +6,8 @@ import TuitionHistoryList from './components/HomeSection/TutionHistoryList';
 import EarningHistoryList from './components/HomeSection/EarningHistoryCardList';
 import PendingRequestsList from './components/HomeSection/PendingRequestCardFromStudentList';
 
-const Home = () => {
-	const [notPremium, setNotPremium] = useState(true);
+const Home: React.FC = () => {
+	const [notPremium, setNotPremium] = useState<boolean>(true);
 
 	return (
 		<div className="flex flex-col justify-center min-h-screen mx-28 gap-5 my-10">
