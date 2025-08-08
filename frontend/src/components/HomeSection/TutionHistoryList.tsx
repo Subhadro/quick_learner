@@ -10,13 +10,6 @@ const TuitionHistoryList: React.FC = () => {
 	const [tuitionHistory] = useState<TuitionHistoryIO[]>(tuitionHistoryData);
 
 	const visibleHistory = showAll ? tuitionHistory : tuitionHistory.slice(0, 2);
-
-	// Sample payment statuses - you can modify this logic based on your data
-	const getPaymentStatus = (booking: TuitionHistoryIO): string => {
-		const statuses = ['paid', 'pending', 'overdue', 'cancelled'];
-		return statuses[booking.cardId.length % statuses.length];
-	};
-
 	return (
 		<div className="min-h-screen my-12 px-4">
 			<TitleComponent
@@ -31,7 +24,6 @@ const TuitionHistoryList: React.FC = () => {
 					<TuitionHistoryCard
 						key={booking.cardId}
 						booking={booking}
-						paymentStatus={getPaymentStatus(booking)}
 					/>
 				))}
 			</div>
