@@ -2,20 +2,10 @@ export type FormDataIO = {
   cardId: string;
   tutorName: string;
   timingSlab: string;
-  lastDate: Date;
-  urgent: boolean;
-  phoneNumber: string;
-  requirements: string[];
-}
-
-export type BookingIO = {
-  cardId: string;
-  tutorName: string;
-  requirements: string[];
-  timingSlab: string;
   lastDate: string;
   urgent: boolean;
   phoneNumber: string;
+  requirements: string[];
 }
 
 export type EarningHistoryIO = {
@@ -81,7 +71,7 @@ export type UserIO = {
   review?: ReviewIO[];
 }
 
-export type CardBookingIO = {
+export type CardFormDataIO = {
   heading: string;
   username: string;
   details: string;

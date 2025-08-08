@@ -2,16 +2,16 @@
 import React from "react";
 import { Bookings as defaultBookings } from "../Constants/booking";
 import Card from "../reusable-parts/Card";
-import { CardBookingIO } from "../typeIO/priliminaryIO";
+import { CardFormDataIO } from "../typeIO/priliminaryIO";
 
 type CardListProps = {
-	bookings?: CardBookingIO[];
+	bookings?: CardFormDataIO[];
 }
 
 const CardList: React.FC<CardListProps> = ({ bookings = defaultBookings }) => {
 	return (
 		<div className="flex w-screen flex-col sha">
-			{bookings.map((booking: CardBookingIO, index: number) => (
+			{bookings.map((booking: CardFormDataIO, index: number) => (
 				<Card
 					key={index}
 					heading={booking.heading}

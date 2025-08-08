@@ -3,16 +3,16 @@ import ToggleButton from '../../reusable-parts/ToggleButton';
 import TitleComponent from '../../reusable-parts/TitleComponent';
 import BookingCard from '../../reusable-parts/BookingCard';
 import { sampleBookings } from '../../Constants/booking';
-import { BookingIO } from '../../typeIO/priliminaryIO';
+import { FormDataIO } from '../../typeIO/priliminaryIO';
 
 const BookingsPage: React.FC = () => {
 	const [showAll, setShowAll] = useState<boolean>(false);
 	const [editCardId, setEditCardId] = useState<string | null>(null);
-	const [bookings, setBookings] = useState<BookingIO[]>(sampleBookings);
+	const [bookings, setBookings] = useState<FormDataIO[]>(sampleBookings);
 
 	const visibleBookings = showAll ? bookings : bookings.slice(0, 2);
 
-	const handleChange = (id: string, key: keyof BookingIO, value: string | string[] | boolean): void => {
+	const handleChange = (id: string, key: keyof FormDataIO, value: string | string[] | boolean): void => {
 		const updated = bookings.map((b) =>
 			b.cardId === id ? { ...b, [key]: value } : b
 		);

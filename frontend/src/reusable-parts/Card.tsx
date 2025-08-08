@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { MessageSquare, Share2, Edit } from "lucide-react";
 import { Link } from "react-router-dom";
-import { CardBookingIO } from "../typeIO/priliminaryIO";
+import { CardFormDataIO } from "../typeIO/priliminaryIO";
 
 
-const Card: React.FC<CardBookingIO> = ({
+const Card: React.FC<CardFormDataIO> = ({
   heading,
   username,
   details,

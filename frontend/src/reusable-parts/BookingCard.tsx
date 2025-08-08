@@ -1,11 +1,11 @@
 // BookingCard.tsx
 import React from 'react';
-import { BookingIO } from '../typeIO/priliminaryIO';
+import { FormDataIO } from '../typeIO/priliminaryIO';
 
-interface BookingCardProps {
-	booking: BookingIO;
+type BookingCardProps = {
+	booking: FormDataIO;
 	isEditing: boolean;
-	onChange: (id: string, key: keyof BookingIO, value: string | string[] | boolean) => void;
+	onChange: (id: string, key: keyof FormDataIO, value: string | string[] | boolean) => void;
 	onEdit: () => void;
 	onCancel: () => void;
 	onSave: () => void;
@@ -104,11 +104,11 @@ const BookingCard: React.FC<BookingCardProps> = ({
 						<input
 							type="text"
 							className="input input-bordered w-full"
-							value={booking.lastDate}
+							value={String(booking.lastDate)}
 							onChange={(e) => onChange(booking.cardId, 'lastDate', e.target.value)}
 						/>
 					) : (
-						<p>{booking.lastDate}</p>
+						<p>{String(booking.lastDate)}</p>
 					)}
 				</div>
 			</div>
